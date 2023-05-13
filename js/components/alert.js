@@ -9,6 +9,6 @@ export default class ALert {
   }
 
   hide() {
-    this.alert.classList.add('d-none')
+    this.alert.classList.add("d-none");
   }
 }
