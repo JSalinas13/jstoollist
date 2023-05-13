@@ -20,6 +20,10 @@ export default class View {
     this.createRow(todo);
   }
 
+  toggleCompleted(id) {
+    this.model.toggleCompleted(id);
+  }
+
   removeTodo(id) {
     this.model.removeTodo(id);
     document.getElementById(id).remove();
@@ -33,7 +37,16 @@ export default class View {
       todo.title +
       "</td><td>" +
       todo.description +
-      '</td><td class="text-center"><input type="checkbox"></td><td class="text-right"><button class="btn btn-primary mb-1"><i class="fa fa-pencil"></i></button></td>';
+      '</td><td class="text-center"> </td><td class="text-right"><button class="btn btn-primary mb-1"><i class="fa fa-pencil"></i></button></td>';
+
+    // CHECK
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = todo.completed;
+    checkbox.onclick = () => this.toggleCompleted(todo.id);
+    row.children[2].appendChild(checkbox);
+
+    // BTN ELIMINAR
     const removeBtn = document.createElement("button");
     removeBtn.classList.add("btn", "btn-danger", "mb-1", "ml-1");
     removeBtn.innerHTML = '<i class = "fa fa-trash"></i>';
