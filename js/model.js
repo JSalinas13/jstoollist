@@ -24,4 +24,9 @@ export default class Model {
     console.log(this.todos);
     return { ...todo };
   }
+
+  removeTodo(id) {
+    const index = this.todos.findIndex((todo) => todo.id === id);
+    this.todos.splice(index,1)
+  }
 }
