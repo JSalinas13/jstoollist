@@ -12,8 +12,8 @@ export default class View {
 
     this.filters = new Filters();
 
-    this.addTodoForm.onClick((title, description) =>
-      this.addTodo(title, description)
+    this.addTodoForm.onClick((title, description, date) =>
+      this.addTodo(title, description, date)
     );
 
     this.modal.onClick((id, values) => this.editTodo(id, values));
@@ -58,8 +58,8 @@ export default class View {
     }
   }
 
-  addTodo(title, description) {
-    const todo = this.model.addTodo(title, description);
+  addTodo(title, description, date) {
+    const todo = this.model.addTodo(title, description, date);
     this.createRow(todo);
   }
 
@@ -73,6 +73,7 @@ export default class View {
     row.children[0].innerText = values.title;
     row.children[1].innerText = values.description;
     row.children[2].children[0].checked = values.completed;
+    row.children[3].innerText = values.date;
   }
 
   removeTodo(id) {
@@ -88,7 +89,9 @@ export default class View {
       todo.title +
       "</td><td>" +
       todo.description +
-      '</td><td class="text-center"> </td><td class="text-right"></td>';
+      '</td><td class="text-center"> </td><td>' +
+      todo.date +
+      '</td><td class="text-right"></td>';
 
     // CHECK
     const checkbox = document.createElement("input");
@@ -96,6 +99,16 @@ export default class View {
     checkbox.checked = todo.completed;
     checkbox.onclick = () => this.toggleCompleted(todo.id);
     row.children[2].appendChild(checkbox);
+
+    // FECHA
+    // <input type="date" id="start" name="trip-start" value="aaaa-mm-dd" min="2018-01-01" max="2050-12-31">
+
+    // const calendario = document.createElement("input");
+    // calendario.type = "date";
+    // calendario.id = "start";
+    // calendario.name = "trip-start";
+    // calendario.onclick = () => this.savedate(todo.id);
+    // row.children[3].appendChild(calendario);
 
     // BTN EDITAR
     const editBtn = document.createElement("button");
@@ -109,14 +122,15 @@ export default class View {
         title: row.children[0].innerHTML,
         description: row.children[1].innerHTML,
         completed: row.children[2].children[0].checked,
+        date: row.children[3].innerHTML,
       });
-    row.children[3].appendChild(editBtn);
+    row.children[4].appendChild(editBtn);
 
     // BTN ELIMINAR
     const removeBtn = document.createElement("button");
     removeBtn.classList.add("btn", "btn-danger", "mb-1", "ml-1");
     removeBtn.innerHTML = '<i class = "fa fa-trash"></i>';
     removeBtn.onclick = () => this.removeTodo(todo.id);
-    row.children[3].appendChild(removeBtn);
+    row.children[4].appendChild(removeBtn);
   }
 }

@@ -10,9 +10,12 @@
   <!-- Bootswatch Darkly Theme -->
   <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css" rel="stylesheet" />
   <title>JS Todo List</title>
-</head>
+
+
+
 
 <body>
+
   <!-- Navbar -->
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -37,15 +40,9 @@
         <input type="radio" name="type" value="completed" class="mx-1">
         <label for="female" class="mb-0">Completed</label>
         <input type="radio" name="type" value="uncompleted" class="mx-1">
-        <label for="other" class="mr-2 mb-0">Uncompleted</label> 
+        <label for="other" class="mr-2 mb-0">Uncompleted</label>
 
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          name="words"
-          placeholder="Words"
-          aria-label="Search"
-        >
+        <input class="form-control mr-sm-2" type="search" name="words" placeholder="Words" aria-label="Search">
         <button class="btn btn-outline-info my-2 my-sm-0" type="submit" id="search">
           Search
         </button>
@@ -54,7 +51,6 @@
   </nav>
 
   <!-- Modal -->
-
   <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -82,6 +78,11 @@
 
               </textarea>
             </div>
+            <div class="form-group">
+              <label class="m-sm-0">Fecha creacion</label>
+              <input type="date" id="fecha" name="trip-start" value="aaaa-mm-dd" min="2018-01-01" max="2050-12-31">
+            </div>
+
             <div class="form-group d-inline-flex">
               <label>Completed</label>
               <div class="mt-1 ml-2">
@@ -109,7 +110,6 @@
       </div>
 
       <!-- Add Todo -->
-
       <div>
         <form>
           <div class="row">
@@ -117,11 +117,17 @@
               <label class="m-sm-0">Title</label>
               <input type="text" id="title" class="form-control ml-sm-2" placeholder="Learn JS">
             </div>
-            <div class="px-sm-2 col-sm-7 d-sm-flex align-items-center mt-2 mt-sm-0">
+            <div class="px-sm-2 col-sm-5 d-sm-flex align-items-center mt-2 mt-sm-0">
               <label class="m-sm-0">Description</label>
               <input type="text" id="description" class="form-control ml-sm-2" placeholder="Watch JS Tutorials">
             </div>
-            <div class="col-sm-2 d-sm-flex justify-content-end mt-4 mt-sm-0">
+
+            <div class="px-sm-2 col-sm-3 d-sm-flex align-items-center mt-2 mt-sm-0">
+              <label class="m-sm-0">Creation date</label>
+              <input class="m-2" type="date" id="date" name="trip-start" value="aaaa-mm-dd" min="2018-01-01"
+                max="2050-12-31">
+            </div>
+            <div class="col-sm-1 d-sm-flex justify-content-end mt-4 mt-sm-0">
               <button type="button" class="btn btn-info btn-block" id="add">
                 Add
               </button>
@@ -131,9 +137,8 @@
       </div>
 
       <!-- Table -->
-
       <div class="mt-5">
-        <table class="table table-striped" id="table">
+        <table class="table table-dark table-hover" id="table">
           <thead>
             <tr>
               <th scope="col">Todo</th>
@@ -143,7 +148,12 @@
                   Completed
                 </div>
               </th>
-              <th scope="col"></th>
+              <th scope="col">
+                Creation date
+              </th>
+              <th scope="col">
+                Options
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -154,6 +164,13 @@
     </div>
   </main>
 
+  <!-- CALENDARIO  -->
+
+
+
+
+
+
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
@@ -161,6 +178,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <!-- JS Code -->
   <script src="./js/index.js" type="module"></script>
+
+
 </body>
 
 </html>

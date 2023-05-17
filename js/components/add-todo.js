@@ -3,6 +3,7 @@ export default class AddTodo {
   constructor() {
     this.title = document.getElementById("title");
     this.description = document.getElementById("description");
+    this.date = document.getElementById("date");
     this.btn = document.getElementById("add");
 
     this.alert = new ALert("alert");
@@ -10,11 +11,11 @@ export default class AddTodo {
 
   onClick(callback) {
     this.btn.onclick = () => {
-      if (title.value === "" || description.value === "") {
-        this.alert.show("Title and description are required");
+      if (title.value === "" || description.value === "" || date.value === "") {
+        this.alert.show("Title, description and date are required");
       } else {
         this.alert.hide();
-        callback(this.title.value, this.description.value);
+        callback(this.title.value, this.description.value, this.date.value);
       }
     };
   }

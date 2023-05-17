@@ -8,6 +8,7 @@ export default class Model {
           id: 0,
           title: "EXAMPLE",
           description: "EXAMPLE DESCRIPTION",
+          date: "",
           completed: false,
         },
       ];
@@ -26,12 +27,13 @@ export default class Model {
   }
 
   getTodos() {
-    return this.todos.map((todo) => ({...todo}));
+    return this.todos.map((todo) => ({ ...todo }));
   }
 
   findTodo(id) {
     return this.todos.findIndex((todo) => todo.id === id);
   }
+
   toggleCompleted(id) {
     const index = this.findTodo(id);
     const todo = this.todos[index];
@@ -46,11 +48,12 @@ export default class Model {
     this.save();
   }
 
-  addTodo(title, description) {
+  addTodo(title, description, date) {
     const todo = {
       id: this.currentId++,
       title,
       description,
+      date,
       completed: false,
     };
     this.todos.push(todo);
